@@ -2,38 +2,24 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.naive_bayes import MultinomialNB
-from sklearn.metrics import accuracy_score, confusion_matrix
+from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
 
-# Sample Dataset
-data = {
-    "email": [
-        "Win a free iPhone now",
-        "Meeting at 3 PM today",
-        "Congratulations! You won a lottery",
-        "Project submission tomorrow",
-        "Claim your free gift card",
-        "Let's discuss the assignment",
-        "Earn money quickly from home",
-        "Your account has been credited",
-        "Free vacation package available",
-        "Team meeting scheduled for Monday"
-    ],
-    "label": [
-        "spam",
-        "ham",
-        "spam",
-        "ham",
-        "spam",
-        "ham",
-        "spam",
-        "ham",
-        "spam",
-        "ham"
-    ]
-}
+# Load Dataset
+df = pd.read_csv(r"C:\Users\prade\Downloads\mail_data.csv", encoding="latin-1")
+print(df.columns)
+print(df.head())
 
-# Convert to DataFrame
-df = pd.DataFrame(data)
+# Keep only required columns
+df = df[["Category", "Message"]]
+
+# Rename columns
+df.columns = ["label", "email"]
+
+# Display dataset information
+print("===== DATASET INFORMATION =====")
+print("Total Messages:", len(df))
+print("\nFirst 5 Records:")
+print(df.head())
 
 # Split dataset into training and testing data
 X_train, X_test, y_train, y_test = train_test_split(
@@ -45,6 +31,7 @@ X_train, X_test, y_train, y_test = train_test_split(
 
 # Convert text into numerical features
 vectorizer = CountVectorizer()
+
 X_train_vec = vectorizer.fit_transform(X_train)
 X_test_vec = vectorizer.transform(X_test)
 
@@ -56,23 +43,34 @@ model.fit(X_train_vec, y_train)
 predictions = model.predict(X_test_vec)
 
 # Display Results
-print("===== MODEL EVALUATION =====")
-print("Actual Labels   :", list(y_test))
-print("Predicted Labels:", list(predictions))
+print("\n===== MODEL EVALUATION =====")
+
+print("\nActual Labels:")
+print(list(y_test[:10]))
+
+print("\nPredicted Labels:")
+print(list(predictions[:10]))
 
 # Accuracy
 accuracy = accuracy_score(y_test, predictions)
+
 print("\nAccuracy:", round(accuracy * 100, 2), "%")
 
 # Confusion Matrix
 print("\nConfusion Matrix:")
 print(confusion_matrix(y_test, predictions))
 
+# Classification Report
+print("\nClassification Report:")
+print(classification_report(y_test, predictions))
+
 # User Input Prediction
 print("\n===== SPAM EMAIL CHECKER =====")
+
 user_email = input("Enter an email message: ")
 
 user_email_vec = vectorizer.transform([user_email])
+
 result = model.predict(user_email_vec)[0]
 
 print("\nPrediction:", result.upper())
