@@ -1,39 +1,77 @@
-# Spam Email Detection
+# Spam Email Detection System
 
 ## Project Overview
-This project is a simple Spam Email Detection System built using Python and Machine Learning. It classifies email messages as Spam or Ham (Not Spam) using the Multinomial Naive Bayes algorithm.
+
+This project is a Machine Learning-based Spam Email Detection System that classifies messages as Spam or Ham (Not Spam). The model is trained on a real-world dataset using the Multinomial Naive Bayes algorithm.
+
+## Objective
+
+The objective of this project is to automatically identify spam messages using Natural Language Processing (NLP) and Machine Learning techniques.
 
 ## Features
-- Spam/Ham classification
-- CountVectorizer for text processing
+
+- Spam and Ham message classification
+- Real-world dataset from Kaggle
+- Text vectorization using CountVectorizer
 - Multinomial Naive Bayes model
-- Accuracy calculation
+- Accuracy evaluation
 - Confusion Matrix
-- User input prediction
+- User message prediction
 
 ## Technologies Used
+
 - Python
 - Pandas
 - Scikit-learn
 
+## Dataset
+
+Dataset Source: Kaggle SMS Spam Collection Dataset
+
+- Total Messages: 5572
+- Classes:
+  - Spam
+  - Ham
+
+## Skills Demonstrated
+
+- Python Programming
+- Data Preprocessing
+- Machine Learning
+- Text Classification
+- Feature Extraction
+- Model Evaluation
+
 ## Algorithm Used
-- Multinomial Naive Bayes
+
+### CountVectorizer
+Converts text messages into numerical vectors.
+
+### Multinomial Naive Bayes
+Classifies messages as Spam or Ham based on learned patterns.
 
 ## Project Workflow
-1. Create dataset
-2. Convert dataset into DataFrame
-3. Split dataset into training and testing data
-4. Convert text into vectors
-5. Train the model
-6. Make predictions
-7. Calculate accuracy
-8. Display confusion matrix
-9. Predict user-entered email
+
+1. Load dataset from CSV file
+2. Preprocess data
+3. Split data into training and testing sets
+4. Convert text into numerical vectors
+5. Train Naive Bayes model
+6. Evaluate model performance
+7. Predict user-entered messages
+
+## Repository structure
+spam-email-detection/
+│
+├── .gitignore
+├── spam_detector.py
+├── spam.csv
+└── README.md
 
 ## Installation
 
 ```bash
-pip install -r requirements.txt
+pip install pandas scikit-learn
 ```
 
 ## Run the Project
@@ -42,29 +80,32 @@ pip install -r requirements.txt
 python spam_detector.py
 ```
 
-===== MODEL EVALUATION =====
-Actual Labels   : ['spam', 'ham']
-Predicted Labels: ['spam', 'ham']
+## Sample Output
 
-Accuracy: 100.0 %
+```text
+Accuracy: 98.5%
 
-Confusion Matrix:
-[[1 0]
- [0 1]]
+Prediction: SPAM
+Warning: This email is likely SPAM.
+```
 
-===== SPAM EMAIL CHECKER =====
-Enter an email message:
+## Output Screenshot
 
-<img width="397" height="164" alt="image" src="https://github.com/user-attachments/assets/7770a7b8-1c21-4631-b59a-ee83156327e0" />
+<img width="885" height="356" alt="image" src="https://github.com/user-attachments/assets/405e20c2-fc9f-442f-8366-92abde8f932e" />
+<img width="907" height="294" alt="image" src="https://github.com/user-attachments/assets/ee4fcd6c-b223-4d2c-9060-66505c6bf246" />
 
 
 ## Future Improvements
-- Use a larger dataset
-- Add GUI support
+
+- Use advanced NLP techniques
+- Compare multiple machine learning models
+- Build a GUI application
 - Deploy as a web application
 
 ## Conclusion
-This project demonstrates how Machine Learning can be used to automatically detect spam emails.
 
-## Mini Porject
-submitted by - Tamanna Verma
+This project demonstrates how Machine Learning and NLP can be used to detect spam messages effectively using a real-world dataset.
+
+## Author
+
+Tamanna Verma
